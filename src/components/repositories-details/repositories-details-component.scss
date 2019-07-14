@@ -1,8 +1,15 @@
 .repos-details {
     width: 100%;
+    margin-top: 1rem;
     .repos-listing {
-        height: 42rem;
+        height: 37rem;
         background-color: blue;
-        margin-right: 30px;
+        margin: 1rem 30px 0 0;
+    }
+    .dropdown {
+        margin-left: 100px;
+        .dropdown-toggle  {
+            width: 75%;
+        }
     }
 }

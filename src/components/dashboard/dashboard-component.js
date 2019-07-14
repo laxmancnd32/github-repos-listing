@@ -6,7 +6,6 @@ import './dashboard.scss'
 
 class DashBoard extends Component {
   render() {
-    const { history } = this.props;
     const filterColumnStyle = {
         height: '100vh'
     };
