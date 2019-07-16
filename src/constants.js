@@ -1,5 +1,12 @@
-export const baseUrl = 'https://api.github.com/search/repositories?q={%query}';
+export const baseUrl = 'https://api.github.com/search/repositories?page={%pageNumber}&q={%query}';
 
-export const sortingDropdownOptions = ['Best Match', 'Most Stars', 'Fewest Stars', 
-                              'Most Forks', 'Fewest Forks', 'A to Z', 
-                              'Z to A', 'Recently Updated', 'Least Recently Updated'];
+export const sortingDropdownOptions = ['Most Stars', 'Fewest Stars', 'Most Forks', 'Fewest Forks', 'A to Z', 'Z to A'];
+
+export const sortingKeys = {
+    'Most Stars': {value: 'stargazers_count', order: 'desc'},
+    'Fewest Stars': {value: 'stargazers_count', order: 'asc'},
+    'Most Forks': {value: 'forks', order: 'desc'},
+    'Fewest Forks': {value: 'forks', order: 'asc'},
+    'A to Z': {value: 'full_name', order: 'asc'},
+    'Z to A': {value: 'full_name', order: 'desc'}
+};

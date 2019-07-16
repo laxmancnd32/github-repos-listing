@@ -14,3 +14,8 @@ export const searchTrigerred = (filteredResults,isSearchTrigerred) => ({
     filteredResults,
     isSearchTrigerred
 });
+
+export const setQueryText = queryText => ({
+    type: 'SET_QUERY_TEXT',
+    queryText
+});

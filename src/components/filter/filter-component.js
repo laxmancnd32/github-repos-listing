@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import SliderFilterComponent from './components/slider-filter-component';
 import MultiSelectFilterComponent from './components/multi-select-filter-component';
 import { formatQuery } from '../../general-utils';
-import { getRepositories } from '../../service/github-repositories-service';
-import { baseUrl } from '../../constants';
 import './filter-component.scss';
 
 class FilterComponent extends Component {
     state = {
-      languageFilterOptions: [{value: 'Python', label: 'Python'},{value: 'JavaScript', label: 'JavaScript'}, {value: 'C', label: 'C'} ],
-      repoTopicsFilterOptions: [],
+      languageFilterOptions: [{value: 'python', label: 'Python'},{value: 'javascript', label: 'JavaScript'}, {value: 'c', label: 'C'} ],
+      repoTopicsFilterOptions: [{ value: ''}],
       lastActiveFilterOptions: [{value: '30 days', label:"Last 30 days"}, {value: '6 months', label:"Last 6 months"}, {value: 'year', label:"Last year"}],
       createdFilterOptions: [{value: '2014', label: '2014'}, {value: '2015', label: '2015'}, {value: '2016', label: '2016'},{value: '2017', label: '2017'},{value: '2018', label: '2018'},{value: '2019', label: '2019'}],
       languageValues: [],
@@ -36,13 +34,7 @@ class FilterComponent extends Component {
         }
       });
       if(!(queryText === '')) {
-        const searchUrl = baseUrl.replace('{%query}', queryText);
-
-        Promise.all([getRepositories(searchUrl)]).then(response => {
-          const { items = [] } = response[0];
-          actions.setIsLoading(false);
-          actions.setGithubRepoData(items, items.length);
-        });
+        actions.setQueryText(queryText);
       }
     };
 
@@ -53,8 +45,6 @@ class FilterComponent extends Component {
       const newQueryText = formatQuery(queryText, type, queryValues);
 
       this.setState({ queryText: newQueryText });
-
-      
     };
 
     render() {

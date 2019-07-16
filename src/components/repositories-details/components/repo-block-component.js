@@ -7,7 +7,7 @@ class RepoBlockComponent extends Component {
 
     render() {
         const { repository = [] } = this.props;
-        const { full_name, description, stargazers_count , forks, watchers, clone_url } = repository;
+        const { full_name = '', description = '', stargazers_count ='' , forks ='', watchers = '', clone_url = '' } = repository;
         return (
             <li className="repos-block">
                     <div className="icon-and-info">

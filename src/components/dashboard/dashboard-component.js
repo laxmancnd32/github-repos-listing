@@ -2,29 +2,11 @@ import React, { Component } from 'react';
 import FilterComponent from '../filter'
 import ReposDetailsComponent from '../repositories-details';
 import SearchBarComponent from '../searchbar-component';
-import LoaderComponent from '../loader-component';
-import { getRepositories } from '../../service/github-repositories-service';
-import { baseUrl } from '../../constants';
 import './dashboard.scss';
 
 class DashBoard extends Component {
-    state = {
-    }
 
-    componentDidMount() {
-        const { actions } = this.props;
-        const searchUrl = baseUrl.replace('{%query}', 'language:Python+language:JavaScript+language:C');
-
-        Promise.all([getRepositories(searchUrl)]).then(response => {
-            const { items } = response[0];
-            actions.setIsLoading(false);
-            actions.setGithubRepoData(items, items.length);
-        });
-    }
     render() {
-        const { isLoading } = this.props;
-        const listingRepos = isLoading ? <LoaderComponent /> : <ReposDetailsComponent />;
-
         return (
             <div className='dashboard'>
                 <div className="row">
@@ -36,7 +18,7 @@ class DashBoard extends Component {
                             <SearchBarComponent />
                         </div>
                         <div className="row">
-                            {listingRepos}
+                            <ReposDetailsComponent />
                         </div>
                     </div>
                 </div>

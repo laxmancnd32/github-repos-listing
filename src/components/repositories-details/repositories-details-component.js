@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import ReposListingComponent from './components/repos-listing-component';
+import ReposListingComponent from './components/connect/repos-listing-connect';
 import { DropdownButton, Dropdown } from 'react-bootstrap';
-import { sortingDropdownOptions } from '../../constants';
-import { formatRepos } from '../../general-utils';
+import { sortingDropdownOptions, sortingKeys } from '../../constants';
+import { sortItemsBasedOnKey } from '../../general-utils';
 import './repositories-details-component.scss'
 
 class ReposDetailsComponent extends Component {
@@ -12,22 +12,25 @@ class ReposDetailsComponent extends Component {
 
   handleDropDownChange = event => {
     const currentSortingKey = event.target.innerText;
+    const { actions, items, total_count } = this.props
 
     this.setState({ currentSortingKey });
+    const sortingKeyInfo = sortingKeys[currentSortingKey];
+    const newItems = sortItemsBasedOnKey(items, sortingKeyInfo);
+    actions.setGithubRepoData(newItems, total_count)
   };
 
   render() {
-    const { total_count = 0, items, filteredResults, isSearchTrigerred  } = this.props;
-    const { currentSortingKey } = this.state;
-    const repositories = isSearchTrigerred ? filteredResults : items;
- 
+    const { total_count } = this.props;
+    const { currentSortingKey } = this.state; 
+    
     return (
       <div className="repos-details">
-          <div className="row">
-            <div className="col-8">
-              {`${total_count} results found.`}
-            </div>
-            <div className="col-4">
+        <div className="row">
+          <div className="col-8">
+            {`${total_count} results found.`}
+          </div>
+          <div className="col-4">
             <DropdownButton id="dropdown-basic-button" title={currentSortingKey}>
               {sortingDropdownOptions.map(option => {
                 return (
@@ -35,16 +38,16 @@ class ReposDetailsComponent extends Component {
                     {option}
                   </Dropdown.Item>
                 );
-              })}
+                })}
             </DropdownButton>
-            </div>
           </div>
-          <div className="row">
-            <div className="col-12">
-              <ReposListingComponent repositories={formatRepos(repositories)}/>
-            </div>
+        </div>
+        <div className="row">
+          <div className="col-12">
+            <ReposListingComponent />
           </div>
-       </div>
+        </div>
+      </div>
     );
   }
 }

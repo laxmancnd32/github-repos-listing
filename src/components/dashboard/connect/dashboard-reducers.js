@@ -4,7 +4,8 @@ const dashBoardReducer = (state = {}, action) => {
       return {
         ...state,
         total_count: action.total_count,
-        items: action.items
+        items: action.items,
+        isSearchTrigerred: false
       }
       case 'SET_IS_LOADING': 
       return {
@@ -15,8 +16,13 @@ const dashBoardReducer = (state = {}, action) => {
       return {
         ...state,
         filteredResults: action.filteredResults,
-        total_count: action.filteredResults.length,
         isSearchTrigerred: action.isSearchTrigerred
+      }
+      case 'SET_QUERY_TEXT':
+      return {
+        ...state,
+        queryText : action.queryText,
+        isSearchTrigerred: false
       }
       default:
         return state

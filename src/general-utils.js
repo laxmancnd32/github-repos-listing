@@ -1,19 +1,5 @@
-export const formatRepos = items => {
-    const formattedItems = [];
+  import { orderBy } from 'lodash/collection';
   
-    items.forEach(item => {
-      const { full_name, forks, description, watchers, stargazers_count, forks_url, language, clone_url, pushed_at, size } = item;
-
-      formattedItems.push({
-            full_name, forks, description,
-            watchers, stargazers_count, forks_url,
-            language, clone_url, pushed_at, size
-        });
-    });
-
-    return formattedItems;
-  };
-
   export const filterRepositories = args => {
     const { filterCriteria, queryText, items } = args;
 
@@ -60,4 +46,10 @@ export const formatRepos = items => {
       }
       default: return baseString;
     }
+  };
+
+  export const sortItemsBasedOnKey = (items, sortingKeyInfo) => {
+    const sortedItems = orderBy(items, sortingKeyInfo.value, sortingKeyInfo.order);
+
+    return sortedItems;
   };
