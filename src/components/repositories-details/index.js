@@ -1,3 +1,3 @@
-import ReposDetailsComponent from './repositories-details-component';
+import ReposDetailsComponent from './connect/repositories-details-connect';
 
 export default ReposDetailsComponent;

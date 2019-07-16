@@ -1,10 +1,15 @@
 const dashBoardReducer = (state = {}, action) => {
     switch (action.type) {
-      case 'GET_GITHUB_REPOS':
+      case 'SET_GITHUB_REPOS':
       return {
         ...state,
-        pageName: action.pageName,
-        actionCalled: action.actionCalled
+        total_count: action.total_count,
+        items: action.items
+      }
+      case 'SET_IS_LOADING': 
+      return {
+        ...state,
+        isLoading: action.isLoading
       }
       default:
         return state

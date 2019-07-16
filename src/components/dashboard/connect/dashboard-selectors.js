@@ -1,8 +1,8 @@
 export function select(state) {
-    const { pageName = 'Sample' } = state.dashboardReducers;
-    const { actionCalled = false } = state.dashboardReducers;
+    const { items = [], total_count = 0, isLoading = true } = state.dashboardReducers;
     return Object.assign({}, {
-        pageName,
-        actionCalled
+        items,
+        total_count,
+        isLoading
     });
 }

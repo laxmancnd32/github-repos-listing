@@ -33,19 +33,26 @@
                 margin-left: 15%;
                 color: lightskyblue;
             }
-            span {
+            a {
                 font-weight: 500;
+                display: inline-block;
+                width: 70%;
                 color: green;
-                margin-left: 20%;
+                margin-left: 5%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
             }
             .description {
                 margin: 3% 0 0 8%;
                 color: grey;
+                height: 4rem;
+                overflow-y: auto;
             }
         }
-        .stars-forks-views {
+        .stargazers-forks-watchers {
             margin: 5rem 0 0 2rem;
-            .stars, .forks, .watch {
+            .stargazers, .forks, .watchers {
                 display: inline-block;
                 width: 25%;
                 text-align: center;
