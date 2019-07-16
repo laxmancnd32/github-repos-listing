@@ -11,6 +11,13 @@ const dashBoardReducer = (state = {}, action) => {
         ...state,
         isLoading: action.isLoading
       }
+      case 'SEARCH_TRIGGERED':
+      return {
+        ...state,
+        filteredResults: action.filteredResults,
+        total_count: action.filteredResults.length,
+        isSearchTrigerred: action.isSearchTrigerred
+      }
       default:
         return state
     }

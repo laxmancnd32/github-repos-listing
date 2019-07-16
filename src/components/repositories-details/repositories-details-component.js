@@ -17,14 +17,15 @@ class ReposDetailsComponent extends Component {
   };
 
   render() {
-    const { total_count = 0, timeTaken = 10, items } = this.props;
+    const { total_count = 0, items, filteredResults, isSearchTrigerred  } = this.props;
     const { currentSortingKey } = this.state;
-
+    const repositories = isSearchTrigerred ? filteredResults : items;
+ 
     return (
       <div className="repos-details">
           <div className="row">
             <div className="col-8">
-              {`${total_count} results found in ${timeTaken} ms`}
+              {`${total_count} results found.`}
             </div>
             <div className="col-4">
             <DropdownButton id="dropdown-basic-button" title={currentSortingKey}>
@@ -40,7 +41,7 @@ class ReposDetailsComponent extends Component {
           </div>
           <div className="row">
             <div className="col-12">
-              <ReposListingComponent repositories={formatRepos(items)}/>
+              <ReposListingComponent repositories={formatRepos(repositories)}/>
             </div>
           </div>
        </div>

@@ -13,12 +13,12 @@ class DashBoard extends Component {
 
     componentDidMount() {
         const { actions } = this.props;
-        const searchUrl = baseUrl.replace('{%query}', 'language:python');
+        const searchUrl = baseUrl.replace('{%query}', 'language:Python+language:JavaScript+language:C');
 
         Promise.all([getRepositories(searchUrl)]).then(response => {
-            const { total_count, items } = response[0];
+            const { items } = response[0];
             actions.setIsLoading(false);
-            actions.setGithubRepoData(items, total_count);
+            actions.setGithubRepoData(items, items.length);
         });
     }
     render() {

@@ -8,3 +8,9 @@ export const setIsLoading = isLoading => ({
     type: 'SET_IS_LOADING',
     isLoading
 });
+
+export const searchTrigerred = (filteredResults,isSearchTrigerred) => ({
+    type: 'SEARCH_TRIGGERED',
+    filteredResults,
+    isSearchTrigerred
+});
