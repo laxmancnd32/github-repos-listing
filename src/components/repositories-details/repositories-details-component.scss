@@ -19,8 +19,7 @@
     .repos-block {
         float:left;
         width: 45%;
-        height: 200px;
-        margin: 10px;
+        margin: 1%;
         border: 1.5px solid #DCDCDC;
         border-radius: 5px;
         .icon-and-info {
@@ -28,14 +27,14 @@
             height: 5rem;
             padding-top: 1.5rem;
             .repo-logo {
-                margin-left: 15%;
+                margin-left: 14%;
                 color: lightskyblue;
             }
             a {
                 font-weight: 500;
                 display: inline-block;
                 width: 70%;
-                color: green;
+                color: #00a86b;
                 margin-left: 5%;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -47,9 +46,19 @@
                 height: 4rem;
                 overflow-y: auto;
             }
+            .language-tags {
+                margin: 1% 0 0 12%;
+                display: inline-block;
+                padding: 4px;
+                background-color: #00a86b;
+                color: white;
+                border-radius: 4px;
+            }
         }
         .stargazers-forks-watchers {
             margin: 5rem 0 0 2rem;
+            padding-top: 1rem;
+            padding-bottom: 1rem;
             .stargazers, .forks, .watchers {
                 display: inline-block;
                 width: 25%;

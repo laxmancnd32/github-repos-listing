@@ -1,5 +1,5 @@
 .filters {
-    background-color: green;
+    background-color: #00a86b;
     padding: 2rem;
     height: 100%;
     h4 {
@@ -15,5 +15,8 @@
     .rangeslider__labels .rangeslider__label-item {
         color: white;
         font-size: 1rem;
+    }
+    .rangeslider-horizontal .rangeslider__fill {
+        background-color: #00a86b;
     }
 }

@@ -12,44 +12,27 @@
     return filteredResults;
   };
 
-  export const formatQuery = (queryText, type , queryValues) => {
-    let baseString = queryText;
-
-    switch(type){
-      case 'languageValues': {
-        queryValues.forEach(value => {
-          baseString = baseString + '+language:' + value;
-        });
-
-        return baseString;
-      }
-      case 'lastActiveValues': {
-        queryValues.forEach(value => {
-          baseString = baseString + '+lastActive:' + value;
-        });
-
-        return baseString;
-      }
-      case 'repoTopicValues': {
-        queryValues.forEach(value => {
-          baseString = baseString + '+repoTopic:' + value;
-        });
-
-        return baseString;
-      }
-      case 'createdValues': {
-        queryValues.forEach(value => {
-          baseString = baseString + '+created:' + value;
-        });
-
-        return baseString;
-      }
-      default: return baseString;
-    }
-  };
-
   export const sortItemsBasedOnKey = (items, sortingKeyInfo) => {
     const sortedItems = orderBy(items, sortingKeyInfo.value, sortingKeyInfo.order);
 
     return sortedItems;
+  };
+
+  export const getDateValues = dateObj => {
+    const month = dateObj.getUTCMonth() + 1;
+    const day = dateObj.getUTCDate();
+    const year = dateObj.getUTCFullYear();
+
+    return { year, month, day}
+  };
+
+  export const getDateBasedOnFilter = filterValue => {
+    const currentDateObj = getDateValues(new Date());
+    const { year, month, day } = currentDateObj;
+    
+    switch(filterValue.value){
+      case '30 days': return getDateValues(new Date(year, month - 2, day));
+      case '6 months': return getDateValues(new Date(year, month - 7, day));
+      default: return getDateValues(new Date(year-1, month - 1, day));
+    }
   };

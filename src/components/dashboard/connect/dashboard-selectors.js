@@ -2,7 +2,7 @@ export function select(state) {
     const { 
             items = [], total_count = 0, isLoading = true,
             filteredResults = [], isSearchTrigerred = false,
-            queryText = 'language:python+language:javascript+language:c'
+            queryText = ''
         } = state.dashboardReducers;
     return Object.assign({}, {
         items,

@@ -28,7 +28,6 @@ class ReposListingComponent extends Component {
 
     getRepositories(searchUrl).then(response => {
         const { items, total_count } = response;
-        actions.setIsLoading(false);
         actions.setGithubRepoData(items, total_count);
     });
   };
@@ -40,8 +39,8 @@ class ReposListingComponent extends Component {
 
     getRepositories(searchUrl).then(response => {
       const newItems = response.items;
-      const finalItems = items.concat(newItems);
-      actions.setGithubRepoData(finalItems, total_count);
+
+      actions.setGithubRepoData(items.concat(newItems), total_count);
     });
   };
 

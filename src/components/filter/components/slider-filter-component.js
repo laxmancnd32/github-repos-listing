@@ -1,35 +1,28 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Slider from 'react-rangeslider';
 import 'react-rangeslider/lib/index.css'
 
-class SliderFilterComponent extends Component {
-    state = {
-        stars: null
-    }
+const SliderFilterComponent = props => {
+    const { sliderClassName, sliderTitle, sliderRange, sliderLabel, sliderValue, handleSliderChange, step } = props;
+    const entity = sliderTitle === 'Repo Stars' ? 'stars' : 'forks';
 
-    onSliderChange = stars => {
-        this.setState({ stars });
-    }
-
-    render() {
-        const { stars } = this.state;
-        const { sliderClassName, sliderTitle, sliderRange, sliderLabel } = this.props;
-
-        return (
+    return (
         <div className={`${sliderClassName} slider-filter`}>
             <h4>{sliderTitle}</h4>
             <Slider
                 min={sliderRange.min}
                 max={sliderRange.max}
-                step={1}
+                step={step}
                 orientation="horizontal"
                 labels={sliderLabel}
-                value={stars}
-                onChange={this.onSliderChange}
+                value={sliderValue}
+                onChange={ sliderVal => {
+                        handleSliderChange(sliderVal, entity);
+                    }
+                }
             />
         </div>
-        );
-  }
+    );
 }
 
 export default SliderFilterComponent;
