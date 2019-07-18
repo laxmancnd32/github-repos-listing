@@ -137,7 +137,7 @@ class FilterComponent extends Component {
               sliderRange={{min: 0, max: 300}}
               sliderLabel={{0: '0', 300: '300k'}}
               sliderValue={stars}
-              steps={100}
+              step={100}
               handleSliderChange={this.handleSliderChange}
             />
             <SliderFilterComponent 
