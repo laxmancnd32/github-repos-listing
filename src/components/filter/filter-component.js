@@ -59,11 +59,11 @@ class FilterComponent extends Component {
       const { queryText, actions } = this.props; 
       const toBeReplacedQuery = this.state[`${entity}Query`];
       const formattedQueryText = queryText.replace(toBeReplacedQuery, '');
-      let currentQuery = `+${entity}:<=${sliderValue*1000}&sort=${entity}&order=desc`;
+      let currentQuery = `+${entity}:<=${sliderValue*1000}`;
 
       this.setState({[entity]: sliderValue, [`${entity}Query`]: currentQuery });
       currentQuery += formattedQueryText;
-      if(sliderValue >=100) {
+      if(sliderValue >=80) {
         actions.setQueryText(currentQuery);
       }
       else {
@@ -137,7 +137,7 @@ class FilterComponent extends Component {
               sliderRange={{min: 0, max: 300}}
               sliderLabel={{0: '0', 300: '300k'}}
               sliderValue={stars}
-              step={100}
+              step={80}
               handleSliderChange={this.handleSliderChange}
             />
             <SliderFilterComponent 
