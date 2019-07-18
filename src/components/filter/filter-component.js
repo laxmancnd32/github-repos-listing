@@ -47,7 +47,7 @@ class FilterComponent extends Component {
         updatedDay = updatedDay.length === 1 ? `0${updatedDay}`: updatedDay;
         currentQuery = `+${queryKey}:${updatedDateObj.year}-${updatedMonth}-${updatedDay}`;
       } else {
-        currentQuery = `+${queryKey}:=${filterValue.value}`;
+        currentQuery = `+${queryKey}:${filterValue.value}`;
       }
 
       this.setState({ [filter.name]: filterValue, [`${queryKey}Query`]: currentQuery });
@@ -59,7 +59,7 @@ class FilterComponent extends Component {
       const { queryText, actions } = this.props; 
       const toBeReplacedQuery = this.state[`${entity}Query`];
       const formattedQueryText = queryText.replace(toBeReplacedQuery, '');
-      let currentQuery = `+${entity}:<=${sliderValue*1000}`;
+      let currentQuery = `+${entity}:>${sliderValue*1000}+${entity}:<=${sliderValue*1000+999}`;
 
       this.setState({[entity]: sliderValue, [`${entity}Query`]: currentQuery });
       currentQuery += formattedQueryText;
