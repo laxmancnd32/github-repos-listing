@@ -26,10 +26,7 @@ class ReposListingComponent extends Component {
     let searchUrl = baseUrl.replace('{%pageNumber}', page);
     searchUrl = searchUrl.replace('{%query}', queryText);
 
-    getRepositories(searchUrl).then(response => {
-        const { items, total_count } = response;
-        actions.setGithubRepoData(items, total_count);
-    });
+    actions.getRepositoriesData(searchUrl);
   };
 
   fetchDataAfterScroll = () => {

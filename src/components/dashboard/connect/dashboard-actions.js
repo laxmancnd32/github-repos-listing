@@ -1,3 +1,5 @@
+import { getRepositories } from '../../../service/github-repositories-service';
+
 export const setGithubRepoData = (items, total_count) => ({
     type: 'SET_GITHUB_REPOS',
     total_count,
@@ -19,3 +21,16 @@ export const setQueryText = queryText => ({
     type: 'SET_QUERY_TEXT',
     queryText
 });
+
+export const getRepositoriesData = url => dispatch => {
+
+    return getRepositories(url).then(response => {
+        const { items, total_count } = response;
+
+        return dispatch({
+            type: 'SET_GITHUB_REPOS',
+            items,
+            total_count
+        })
+    });
+};
